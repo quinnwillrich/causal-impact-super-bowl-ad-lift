@@ -4,6 +4,14 @@ A causal inference project measuring the lift from Poppi's 2025 Super Bowl campa
 
 **TL;DR:** The headline number says +44% lift. The diagnostics say don't trust it. The real story is in the day-of-game spike (about 6x baseline), and in why a brand growing this fast is genuinely hard to measure with off-the-shelf synthetic controls.
 
+## A note on methodology
+
+This project is a constrained exercise, not a template for how CausalImpact is typically run in practice. Two things about the setup are worth flagging before diving in.
+
+**Google Trends is a weak KPI.** Search interest is a noisy, relative index — not a business outcome. In a real marketing measurement context, you'd want to tie the intervention to something closer to revenue: website sessions, add-to-cart events, new customer orders, or at minimum retail scan data. Search interest can move for reasons entirely unrelated to the campaign (a news cycle, a competitor stumbling, a TikTok going viral for the wrong reasons), and it doesn't tell you whether anyone actually bought anything. It's a reasonable proxy when first-party data isn't accessible, but you'd never ship a budget decision based on it alone.
+
+**Peer-brand controls are a fallback, not the ideal.** The standard CausalImpact playbook for marketing — especially at companies like Google that developed the method — is geo-based: split markets into treated and holdout groups, expose only the treated markets to the campaign, and use the holdout as the counterfactual. Geo controls are powerful because the treated and control units share the same category dynamics, macroeconomic conditions, and seasonality by construction. You're not hoping a peer brand behaves like your brand; you're using the same brand in a different market. Peer-brand matching is what you reach for when geo holdouts aren't available — which is exactly the situation here, since a national Super Bowl buy hits every market simultaneously. It works, but it introduces the model-fit risks this project runs into directly.
+
 ## The question
 
 Poppi ran a high-profile Super Bowl 2025 ad alongside a pre-game vending machine stunt that went viral on TikTok. Did the campaign drive a measurable lift in brand search interest, and how big?
