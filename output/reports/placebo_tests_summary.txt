@@ -1,0 +1,16 @@
+PLACEBO TESTS: Multiple fake intervention dates
+================================================
+
+Purpose: assess whether the model produces consistent ~zero effects
+on dates when no known intervention occurred. Variance across placebos
+tells us about model bias vs. detection of unknown real events.
+
+All placebo dates are Sundays inside the pre-period.
+All use a 23-day post-period (matching real analysis).
+
+      placebo_date rel_effect rel_lower rel_upper abs_effect p_value is_real
+       Nov 17 2024     -0.746    -5.999      4.12    -0.0961  0.3932   FALSE
+        Dec 1 2024      4.050     0.512      7.79     0.4758  0.0140   FALSE
+       Dec 15 2024     16.146    12.244     20.14     1.9347  0.0002   FALSE
+        Jan 5 2025     30.147    22.330     39.98     4.1117  0.0002   FALSE
+ Feb 1 2025 (REAL)     44.000    34.000     54.00     8.5300  0.0002    TRUE
